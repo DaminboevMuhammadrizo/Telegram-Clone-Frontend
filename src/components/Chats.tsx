@@ -9,18 +9,21 @@ const dummyChats = [
     name: "Najot Ta'lim guruhi",
     message: 'Elbek Zokirjanov: ...',
     time: '2:57PM',
+    unread: 4,
   },
   {
     avatar: 'https://invalid-url.com/avatar.jpg', // noto'g'ri URL test uchun
     name: 'FullStack FN3',
     message: 'Nasriddinov: Nima gap?',
     time: '2:45PM',
+    unread: 1,
   },
   {
     avatar: null,
     name: 'Haad TC Chat',
     message: "Men 2 o'rin deb yozgan...",
     time: '2:38PM',
+    unread: 410,
   },
   {
     avatar: null,
@@ -220,25 +223,31 @@ const Chats: React.FC = () => {
                   <span>{getInitials(chat.name)}</span>
                 )}
               </div>
-
-              {/* unread badge */}
-              {/* {chat.unread && (
-                <span className="absolute top-1 -right-12 bg-blue-500 text-white text-xs rounded-full px-2 leading-none font-semibold select-none">
-                  {chat.unread}
-                </span>
-              )} */}
             </div>
 
             {/* Info */}
             <div className="flex-1 ml-3 border-b border-gray-700 pb-2">
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-start">
                 <p className="font-semibold text-white text-sm truncate">{chat.name}</p>
+
+                <span className="text-xs text-gray-400 whitespace-nowrap">{chat.time}</span>
               </div>
-              <div className="flex justify-between items-center gap-3">
-                <p className="text-gray-400 text-xs truncate flex-1">{chat.message}</p>
-                <span className="text-xs text-gray-400 whitespace-nowrap text-right">{chat.time}</span>
+
+              {/* Message va unread */}
+              <div className="flex justify-between items-center mt-1">
+                <p className="text-gray-400 text-xs truncate max-w-[80%]">
+                  {chat.message}
+                </p>
+
+                {chat.unread && (
+                  <span className="ml-2 bg-blue-500 text-white text-xs rounded-full px-2 leading-none font-semibold select-none">
+                    {chat.unread}
+                  </span>
+                )}
               </div>
             </div>
+
+
 
           </div>
         ))}
